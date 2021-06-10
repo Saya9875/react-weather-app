@@ -1,19 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import Form from './components/Form';
 import Weather from './components/Weather';
 
 function App() {
   const [weather, setWeather] = useState([])
-  const APIKEY = "79b604ecf442f7b5a1a0fad55d058a11"
+  const [data, setData] = useState("Tokyo")
 
-  async function fetchData(e) {
-    const prefecture = e.target.elements.prefecture.value
-    e.preventDefault()
-    const apiData = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${prefecture}&units=metric&lang=ja&APPID=${APIKEY}`)
+  const APIKEY = "79b604ecf442f7b5a1a0fad55d058a11"
+  const onChange = function(e){
+    setData(e.target.value)
+  }
+
+  async function fetchData() {
+    const apiData = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${data}&units=metric&lang=ja&APPID=${APIKEY}`)
       .then(res => res.json())
       .then(data => data)
-    if (prefecture) {
+    if (data) {
       setWeather({
         data: apiData,
         prefecture: apiData.name,
@@ -34,10 +37,14 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    fetchData()
+  }, [])
+
   return (
     <div className="App">
       <h3 className="h3">WEATHER APP</h3>
-      <Form getWeather={fetchData} />
+      <Form getWeather={fetchData} value={data} onChange={onChange}/>
       <Weather
         prefecture={weather.prefecture}
         temperature={weather.temperature}
