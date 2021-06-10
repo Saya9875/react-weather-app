@@ -5,18 +5,19 @@ import Weather from './components/Weather';
 
 function App() {
   const [weather, setWeather] = useState([])
-  const [data, setData] = useState("Tokyo")
+  const [prefecture, setPrefecture] = useState("東京都")
 
   const APIKEY = "79b604ecf442f7b5a1a0fad55d058a11"
+
   const onChange = function(e){
-    setData(e.target.value)
+    setPrefecture(e.target.value)
   }
 
   async function fetchData() {
-    const apiData = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${data}&units=metric&lang=ja&APPID=${APIKEY}`)
+    const apiData = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${prefecture}&units=metric&lang=ja&APPID=${APIKEY}`)
       .then(res => res.json())
       .then(data => data)
-    if (data) {
+    if (prefecture) {
       setWeather({
         data: apiData,
         prefecture: apiData.name,
@@ -35,6 +36,7 @@ function App() {
       }
       )
     }
+    setPrefecture("")
   }
 
   useEffect(() => {
@@ -44,7 +46,7 @@ function App() {
   return (
     <div className="App">
       <h3 className="h3">WEATHER APP</h3>
-      <Form getWeather={fetchData} value={data} onChange={onChange}/>
+      <Form getWeather={fetchData} value={prefecture} onChange={onChange}/>
       <Weather
         prefecture={weather.prefecture}
         temperature={weather.temperature}
