@@ -1,14 +1,26 @@
+import { Button, TextField } from "@material-ui/core";
+import './styles.css';
+
 const Form = (props) => {
   return (
     <form>
-      <input
-        value={props.value}
+      <TextField
         type='text'
         placeholder='都道府県名を入力してね'
-        name='prefecture'
+        name="input"
         onChange={props.onChange}
+        id="outlined-basic"
+        variant="outlined"
+        style={{width: '14em'}}
       />
-      <button type={"button"} onClick={props.getWeather}>検索</button>
+      <Button
+        type="button"
+        onClick={props.getWeather}
+        variant="contained"
+        color="Primary"
+        style={{marginLeft: '1em',marginTop: '0.5em'}}
+        >検索
+      </Button>
     </form>
   )
 }
