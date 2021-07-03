@@ -1,9 +1,9 @@
 import './styles.css';
 
-const Weather = ({ prefecture, temperature, description, error }) => {
+const Weather = ({ pref, temperature, description, error }) => {
   return (
     <div>
-      {prefecture && <p className="pre">{prefecture}</p>}
+      {pref && <p className="pre">{pref}</p>}
       {temperature && <p>{Math.round(temperature)} ℃</p>}
       {description && <p> {description}</p>}
       {error && <p>{error}</p>}
