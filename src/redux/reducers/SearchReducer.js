@@ -1,4 +1,4 @@
-import * as Actions from "./actions";
+import * as Actions from "../actions/actions";
 import initialState from "../store/initialState";
 
 export const SearchReducer = (state = initialState.search, action) => {
@@ -10,12 +10,12 @@ export const SearchReducer = (state = initialState.search, action) => {
             }
         case Actions.UPDATE_WEATHER:
             return {
-                ...state,
+                //...state,
                 ...action.payload
                 }
         case Actions.UPDATE_ERROR:
             return {
-                ...state,
+                //...state,
                 ...action.payload
                 }
         default:

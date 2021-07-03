@@ -3,9 +3,9 @@ const initialState = {
       prefecture: '東京都',
       weather: {
         data: {},
-        pref: {},
-        description: {},
-        temperature: {}
+        pref: '',
+        description: '',
+        temperature: ''
       },
       error: ''
   }
