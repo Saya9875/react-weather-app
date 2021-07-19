@@ -1,4 +1,5 @@
 export const UPDATE_PREFECTURE = 'UPDATE_PREFECTURE'
+export const FETCH_DATA = 'FETCH_DATA'
 export const UPDATE_WEATHER = 'UPDATE_WEATHER'
 export const UPDATE_ERROR = 'UPDATE_ERROR'
 
@@ -6,12 +7,19 @@ export const updatePrefecture = (prefecture) => {
     return {
         type: UPDATE_PREFECTURE,
         payload: {
-            prefecture
+            prefecture: prefecture
         }
     }
 }
 
+export const fetchData = () => {
+    return {
+        type: FETCH_DATA
+    }
+}
+
 export const updateWeather = (searchState) => {
+    console.log(searchState)
     return {
         type: UPDATE_WEATHER,
         payload: {
@@ -27,7 +35,7 @@ export const updateError = (error) => {
     return {
         type: UPDATE_ERROR,
         payload: {
-            error
+            error: error
         }
     }
 }
